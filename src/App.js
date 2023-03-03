@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./styles.css";
+import { createBinaryTree } from "./Node";
+import TreeSide from "./TreeSide";
 
-function App() {
+export default function App() {
+  const [inputValue, setInputValue] = useState("");
+  const tree = createBinaryTree(inputValue);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="h-16 shadow-md ">
+        <input
+          onChange={(e) => setInputValue(e.target.value)}
+          className="h-10 mt-3 bg-gray-100 border rounded-md pr-10 pl-10 text-center"
+          placeholder="Inter your text ..."
+        />
+      </div>
+      <TreeSide
+        style={{ display: "flex", flexDirection: "column" }}
+        node={tree}
+        color={"bg-gray-400"}
+      />
     </div>
   );
 }
-
-export default App;
